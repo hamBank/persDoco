@@ -21,11 +21,9 @@
 
 \documentclass[]{friggeri-cv} % Add 'print' as an option into the square bracket to remove colors from this template for printing
 
-\addbibresource{bibliography.bib} % Specify the bibliography file to include publications
-
 \begin{document}
 
-\header{Antony}{Wuth}{} % Your name and current job title/field
+\header{Antony}{Wuth}{ } % Your name and current job title/field
 
 %----------------------------------------------------------------------------------------
 %	SIDEBAR SECTION
@@ -163,30 +161,6 @@ Worked in the Nerd Herd and helped to solve computer problems by asking customer
 \section{interests}
 
 \textbf{professional:} data analysis, company profiling, risk analysis, economics, web design, web app creation, software design, marketing \textbf{personal:} piano, chess, cooking, dancing, running
-
-%----------------------------------------------------------------------------------------
-%	PUBLICATIONS SECTION
-%----------------------------------------------------------------------------------------
-
-\section{publications}
-
-\printbibsection{article}{article in peer-reviewed journal} % Print all articles from the bibliography
-
-\printbibsection{book}{books} % Print all books from the bibliography
-
-\begin{refsection} % This is a custom heading for those references marked as "inproceedings" but not containing "keyword=france"
-\nocite{*}
-\printbibliography[sorting=chronological, type=inproceedings, title={international peer-reviewed conferences/proceedings}, notkeyword={france}, heading=subbibliography]
-\end{refsection}
-
-\begin{refsection} % This is a custom heading for those references marked as "inproceedings" and containing "keyword=france"
-\nocite{*}
-\printbibliography[sorting=chronological, type=inproceedings, title={local peer-reviewed conferences/proceedings}, keyword={france}, heading=subbibliography]
-\end{refsection}
-
-\printbibsection{misc}{other publications} % Print all miscellaneous entries from the bibliography
-
-\printbibsection{report}{research reports} % Print all research reports from the bibliography
 
 %----------------------------------------------------------------------------------------
 
