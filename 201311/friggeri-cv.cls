@@ -57,7 +57,7 @@
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
 
-%\setmathfont{XITS Math}
+\setmathfont{MathJax_Math}
 
 %%%%%%%%%%
 % Header %
@@ -116,7 +116,7 @@
     \LARGE\headingfont\color{headercolor}%
     \@sectioncolor #1%
   }
-  \par\vspace{\parskip}
+  \par\vspace{.4\parskip}
 }
 
 \renewcommand{\subsection}[2]{

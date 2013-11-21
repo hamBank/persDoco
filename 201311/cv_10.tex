@@ -20,6 +20,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[]{friggeri-cv} % Add 'print' as an option into the square bracket to remove colors from this template for printing
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+%\fancyfoot[R]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
 \begin{document}
 
@@ -73,13 +81,189 @@ Systems Monitoring
 Network Monitoring
 \end{aside}
 
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\section{employment}
+
+\begin{entrylist}
+%------------------------------------------------
+\entry
+{2013-Now}
+{Australian Government, Department of the Environment}
+{Canberra, Australia}
+{\emph{Director Platform Services Section} \\
+Duties:
+\begin{itemize}
+\item Lead and manage a diverse team of ICT professionals.
+\item Manage multi-million dollar operational and project budgets
+\item Project management of both internal and externally delivered systems.
+\item provide advice, participate and manage ICT procurement activities including large tender processes. Including large whole of government activities.
+\item Assist in new strategic initiatives both directly and via participation in steering committees and working groups.
+\item Manage external providers and consultants.
+\item Implement and manage mixed Linux and Windows servers.
+\item Participate in key audit processes including implementation of recommendations.
+\item Deliver key infrastructure projects:
+\begin{itemize}
+\item Migration to new Secured intranet Gateway
+\item Design and implementation of new MAN network design
+\item Implemenation of system configuration management system (pupept)
+\item Oracle Database and infrastructure upgrades
+\end{itemize}
+\end{itemize}}
+%------------------------------------------------
+\entry
+{2008-2013}
+{Australian Government, Department of Sustainability, Environment, Water, Population and Communities}
+{Canberra, Australia}
+{\emph{Director Environmental and Business Information Systems Section} \\
+Duties:
+\begin{itemize}
+\item Lead and manage a diverse team of ICT professionals.
+\item Manage multi-million dollar operational and project budgets
+\item Project management of both internal and externally delivered systems.
+\item Assist in new strategic initiatives both directly and via participation in steering committees.
+\item Manage external providers and consultants.
+\item Implement and manage mixed Linux and Windows servers.
+\item Creation and implementation of resource management stratigies (charge-back cost recovery)
+\item Provide support for web based applications to both internal and external clients.
+\item Train and assist clients to effectively utilise information systems.
+\item Participate in a number of key initiatives including a tender process to source a new Departmental outsourcing provider.
+\item Participate in Whole of Government procurement and policy processes.
+\item Deliver key infrastructure projects:
+\begin{itemize}
+\item Oracle Database and infrastructure upgrades
+\item Network security review, remediation and implementation.
+\end{itemize}
+\end{itemize}}
+\end{entrylist}
+\begin{entrylist}
+%------------------------------------------------
+\entry
+{2004-2008}
+{Australian Government, Department of Environment and Heritage}
+{Canberra, Australia}
+{\emph{Database and Internet Officer} \\
+Duties:
+\begin{itemize}
+\item Develop, implement and manage Internet applications.
+\item Implement and manage mixed Unix (Solaris) and Windows servers.
+\item Provide support for web based applications to both internal and external clients
+\item Manage relationships with external providers and consultants.
+\item Manage APS level staff.
+\item Train and assist clients to effectively utilise information systems.
+\end{itemize}}
+%------------------------------------------------
+\entry
+{2002-2004}
+{Cape3}
+{Canberra, Australia}
+{\emph{Senior Analyst - Web Programmer} \\
+Duties:
+\begin{itemize}
+\item Design of back-end databases, including integration with legacy systems.
+\item Implementations of designs in:
+\begin{itemize}
+\item ColdFusion
+\item Perl
+\item HTML
+\item PHP
+\end{itemize}
+\item Assisting graphics designers to realise their vision.
+\item Design and specification of systems and network upgrades.
+\item Preparation of tender responses
+\end{itemize}}
+%------------------------------------------------
+\entry
+{1998-2002}
+{Australian Water Quality Centre}
+{Boliver, South Australia}
+{\emph{Analyst / Programmer} \\
+Duties:
+\begin{itemize}
+\item Power Builder development
+\item Development of database reporting software
+\item Migration and cleansing of data from legacy systems
+\item Interfacing financial and laboratory systems
+\item Design and implementation of work scheduling systems
+\item Support for Sample Manager
+\item Maintenance and improvement of Laboratory Information systems
+\item VGL Programming
+\item UNIX Administration
+\item Support for AIX 4.x on RS/6000 hardware
+\item Planning and supervision of systems upgrades
+\item Administration and Maintenance of Oracle 7.3, 8 \& 9i systems
+\item Year 2000 (Y2K) systems testing and remediation
+\item Testing of complex integrated applications over multiple environments
+\item Liaison with external suppliers
+\end{itemize}}
+%------------------------------------------------
+\entry
+{1993-1997}
+{Freelance PC / Network Technical Support}
+{Canberra, ACT}
+{\emph{Analyst / Programmer} \\
+Duties:
+\begin{itemize}
+\item Procurement of hardware and software
+\item Network installation and troubleshooting
+\item Hardware upgrades and maintenance
+\item Remote Help Desk support to clients
+\item Internet training
+\end{itemize}}
+%------------------------------------------------
+\end{entrylist}
+
+%----------------------------------------------------------------------------------------
+%	AWARDS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{\linewidth}
+\section{awards}
+\begin{entrylist}
+\entry
+{2009}
+{Secretary's Award}
+{Department of the Environment, Water, Heritage and the Arts}
+{Awarded for sustained contribution towards realising the Department's outcomes}
+%------------------------------------------------
+\entry
+{2007}
+{Division head's Award}
+{Corporate Stratigies Division, Department of the Environment}
+{Awarded for excellent management of the Department's mid-range database, infrastructure and web information systems}
+%------------------------------------------------
+\entry
+{2007}
+{Division head's Award}
+{Corporate Stratigies Division, Department of the Environment}
+{Awarded for excellentsupport to the Department's web information systems}
+%------------------------------------------------
+\end{entrylist}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------
+%	COMMUNICATION SKILLS SECTION
+%----------------------------------------------------------------------------------------
+
+\section{communication skills}
+
+\begin{entrylist}
+%------------------------------------------------
+\entry
+{2013}
+{Oral Presentation}
+{Splunk live}
+{Presented the Department's implementation of splunk as a security and log management system.}
+%------------------------------------------------
+\end{entrylist}
 
 %----------------------------------------------------------------------------------------
 %	EDUCATION SECTION
 %----------------------------------------------------------------------------------------
 
 \section{education}
-
 \begin{entrylist}
 %------------------------------------------------
 \entry
@@ -133,186 +317,12 @@ Network Monitoring
 
 
 %----------------------------------------------------------------------------------------
-%	WORK EXPERIENCE SECTION
-%----------------------------------------------------------------------------------------
-
-\section{experience}
-
-\begin{entrylist}
-%------------------------------------------------
-\entry
-{2013-Now}
-{Australian Government, Department of the Environment}
-{Canberra, Australia}
-{\emph{Director Platform Services Section} \\
-blah blah blah \\
-Duties: \\
-\begin{itemize}
-\item Lead and manage a diverse team of ICT professionals.
-\item Manage multi-million dollar operational and project budgets
-\item Project management of both internal and externally delivered systems.
-\item provide advice, participate and manage ICT procurement activities including large tender processes. Including large whole of government activities.
-\item Assist in new strategic initiatives both directly and via participation in steering committees.
-\item Manage external providers and consultants.
-\item Implement and manage mixed Linux and Windows servers.
-\item Participate in key audit processes including implementation of recommendations.
-\item Deliver key infrastructure projects:
-\item Migration to new Secured intranet Gateway
-\item Design and implementation of new internal (Canberra) network design
-\item Oracle Database and infrastructure upgrades
-\end{itemize}}
-%------------------------------------------------
-\entry
-{2008-2013}
-{Australian Government, Department of Sustainability, Environment, Water, Population and Communities}
-{Canberra, Australia}
-{\emph{Director Environmental and Business Information Systems Section} \\
-blah blah \\
-Duties: \\
-\begin{itemize}
-\item Lead and manage a diverse team of ICT professionals.
-\item Manage multi-million dollar operational and project budgets
-\item Project management of both internal and externally delivered systems.
-\item Assist in new strategic initiatives both directly and via participation in steering committees.
-\item Manage external providers and consultants.
-\item Implement and manage mixed Linux and Windows servers.
-\item Provide support for web based applications to both internal and external clients.
-\item Train and assist clients to effectively utilise information systems.
-\item Participate in a number of key initiatives including a tender process to source a new Departmental outsourcing provider.
-\item Participate in Whole of Government procurement and policy processes.
-\item Deliver key infrastructure projects:
-\item Oracle Database and infrastructure upgrades
-\item Network security review, remediation and implementation.
-\end{itemize}}
-%------------------------------------------------
-\entry
-{2004-2008}
-{Australian Government, Department of Environment and Heritage}
-{Canberra, Australia}
-{\emph{Database and Internet Officer} \\
-{Duties:} \\
-\begin{itemize}
-\item Develop, implement and manage Internet applications.
-\item Implement and manage mixed Unix (Solaris) and Windows servers.
-\item Provide support for web based applications both internally and also to external clients
-\item Manage relationships with external providers and consultants.
-\item Manage APS level staff.
-\item Train and assist clients to effectively utilise information systems.
-\end{itemize}}
-%------------------------------------------------
-{2002-2004}
-{Cape3}
-{Canberra, Australia}
-{\emph{Senior Analyst - Web Programmer} \\
-Duties: \\
-\begin{itemize}
-\item Design of back-end databases, including integration with legacy systems.
-\item Implementations of designs in:
-\begin{itemize}
-\item ColdFusion
-\item Perl
-\item HTML
-\item PHP
-\end{itemize}
-\item Assisting graphics designers to realise their plans.
-\item Design and specification of systems and network upgrades.
-\item Preparation of tender responses
-\end{itemize}}
-%------------------------------------------------
-{1998-2002}
-{Australian Water Quality Centre}
-{Boliver, South Australia}
-{\emph{Analyst / Programmer} \\
-Duties: \\
-\begin{itemize}
-\item Power Builder development
-\item Development of database reporting software.
-\item Migration and cleansing of data from legacy systems
-\item Interfacing financial and laboratory systems
-\item Design and implementation of work scheduling systems
-\item Support for Sample Manager
-\item Maintenance and improvement of Laboratory Information systems
-\item VGL Programming
-\item UNIX Administration
-\item Support for AIX 4.x on RS/6000 hardware
-\item Planning and supervision of systems upgrades
-\item Administration and Maintenance of Oracle 7.3, 8 & 9i systems
-\item Year 2000 (Y2K) systems testing and remediation
-\item Testing of complex integrated applications over multiple environments
-\item Liaison with external suppliers
-\end{itemize}}
-%------------------------------------------------
-{1993-1997}
-{Freelance PC / Network Technical Support}
-{Canberra, ACT}
-Duties: \\
-\begin{itemize}
-\item Procurement of hardware and software
-\item Network installation and troubleshooting
-\item Hardware upgrades and maintenance
-\item Remote Help Desk support to clients
-\item Internet training
-\end{itemize}}
-%------------------------------------------------
-\end{entrylist}
-
-%----------------------------------------------------------------------------------------
-%	AWARDS SECTION
-%----------------------------------------------------------------------------------------
-
-\section{awards}
-
-\begin{entrylist}
-%------------------------------------------------
-\entry
-{2009}
-{Secretary's Award}
-{Department of the Environment, Water, Heritage and the Arts}
-{Awarded for sustained contribution towards realising the Department's outcomes}
-%------------------------------------------------
-\entry
-{2007}
-{Division head's Award}
-{Corporate Stratigies Division, Department of the Environment}
-{Awarded for excellent management of the Department's mid-range database, infrastructure and web information systems}
-%------------------------------------------------
-\entry
-{2007}
-{Division head's Award}
-{Corporate Stratigies Division, Department of the Environment}
-{Awarded for excellentsupport to the Department's web information systems}
-%------------------------------------------------
-\end{entrylist}
-
-%----------------------------------------------------------------------------------------
-%	COMMUNICATION SKILLS SECTION
-%----------------------------------------------------------------------------------------
-
-\section{communication skills}
-
-\begin{entrylist}
-%------------------------------------------------
-\entry
-{2013}
-{Oral Presentation}
-{Splunk live}
-{Presented the Department's implementation of splunk as a security and log management system.}
-%------------------------------------------------
-\entry
-{2010}
-{Poster}
-{Annual Business Conference, Oregon}
-{As part of the course work for BUS320, I created a poster analyzing several local businesses and presented this at a conference.}
-%------------------------------------------------
-\end{entrylist}
-
-%----------------------------------------------------------------------------------------
 %	INTERESTS SECTION
 %----------------------------------------------------------------------------------------
 
 \section{interests}
 
-\textbf{professional:} data analysis, company profiling, risk analysis, economics, web design, web app creation, software design, marketing \textbf{personal:} piano, chess, cooking, dancing, running
+\textbf{professional:} ICT \& physical security, solution design, systems automation, process quality improvment \textbf{personal:} cycling, fish-keeping, home-automation, electronics, embedded programming, wood working.
 
 %----------------------------------------------------------------------------------------
 
