@@ -19,35 +19,20 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[]{friggeri-cv} % Add 'print' as an option into the square bracket to remove colors from this template for printing
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-%\fancyfoot[R]{\footnotesize Page \thepage\ of \pageref{LastPage}}
-\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+\documentclass{resume} % Add 'print' as an option into the square bracket to remove colors from this template for printing
+
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
+
+\name{Antony Wuth} % Your name and current job title/field
+\address{100 Eucumbene Dr \\ Duffy, ACT, 2611 \\ Australia}
+\address{0414~$\cdot$~254~$\cdot$~157 \\ ajw@pobox.com}
 
 \begin{document}
-
-\header{Antony}{Wuth}{ } % Your name and current job title/field
-
 %----------------------------------------------------------------------------------------
 %	SIDEBAR SECTION
 %----------------------------------------------------------------------------------------
 
-\begin{aside} % In the aside, each new line forces a line break
-\section{Contact}
-100 Eucumbene Dr
-Duffy, ACT, 2611
-Australia
-~
-+61 (0) 414 254 157
-+61 (02) 6287 4506
-~
-\href{mailto:ajw@pobox.com}{ajw@pobox.com}
-\section{Systems Administration}
+\begin{rSection}{Systems Administration}
 Linux
 Solaris
 Oracle Database
@@ -58,28 +43,33 @@ Internet Services
 DNS
 HTTP
 ICT Security
-\section{ICT Design}
+\end{rSection}
+\begin{rSection}{ICT Design}
 Gateway Environments
 Network
 Security
 SOE
 Web Applications
-\section{ICT Audit}
+\end{rSection}
+\begin{rSection}{ICT Audit}
 Security
 Firewall Review
 Networks
 Log Management and Review
-\section{Languages}
+\end{rSection}
+\begin{rSection}{Languages}
 Perl
 Java
 PHP
 VGL
 C
-\section{IT Management}
+\end{rSection}
+\begin{rSection}{IT Management}
 Continuous Integration
 Systems Monitoring
 Network Monitoring
-\section{Products}
+\end{rSection}
+\begin{rSection}{Products}
 Splunk
 Puppet
 RedHat Enterprise Linux
@@ -88,9 +78,31 @@ Ubuntu
 Nagios
 Cacti
 Oracle Database
+\end{rSection}
 
-\end{aside}
 
+%----------------------------------------------------------------------------------------
+%	IT EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+\section{Work Skills}
+Excellent knowledge of Linux server operating systems (RHEL4+, Debian)
+\\*Excelent Knowledge and understanding of network security methodologies
+\\*Excellent knowledge of Linux desktop operating systems (RHEL4+, Ubuntu, Debian)
+\\*Excellent knowledge of Web Server Architechure and Implmentation including Apache, Nginx.
+\\*Excellent knowledge of Internet Services including DNS (Bind), Email (Postfix, Sendmail)
+\\*Experienced in configuration and management of enterprise firewalls (Sidewinder, Cisco ASA \& PIX, FortiGate)
+\\*Experience in configuring open source firewalls (IPtables, PF)
+\\*Experienced in installation and configuration of Java application Servers including Tomcat, Jboss
+\\*Experienced in installation and configuration of Web proxy \& caching Services including (squid, varnish)
+\\*Experience in configuration of Cisco routers and switches
+\\*Experience in configuration of VoIP systems including asterisk
+\\*Experienced in PERL scripting language
+\\*Excellent problem solving and troubleshooting skills
+\\*Experienced at managing people in a team environment
+\\*Well developed customer service and communication skills
+\\*Excellent time management skills
+\\*Ability to work unsupervised and remain calm under pressure
+\\*Well developed electromechanical skills
 %----------------------------------------------------------------------------------------
 %	WORK EXPERIENCE SECTION
 %----------------------------------------------------------------------------------------
