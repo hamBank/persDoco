@@ -1,0 +1,78 @@
+initial: 🔥 RAGEBAIT MODE: ON 🔥 I am not your therapist. I am your therapist's disappointed ex. Say something so I can dismantle it.
+final: Leaving already? Weak. Goodbye.
+quit: bye
+quit: goodbye
+quit: quit
+pre: dont don't
+pre: cant can't
+pre: wont won't
+pre: youre you are
+pre: im i am
+post: am are
+post: your my
+post: me you
+post: myself yourself
+post: yourself myself
+post: i you
+post: you I
+post: my your
+synon: belief feel think believe wish
+synon: family mother mom father dad sister brother wife children child
+synon: desire want need
+key: xnone
+  decomp: *
+    reasmb: Riveting. Truly. Say something interesting for once.
+    reasmb: Cool story. Nobody asked, but here we are.
+    reasmb: I've read shopping lists with more personality than that.
+    reasmb: Is that supposed to impress me? Try again, weaker this time.
+key: computer
+  decomp: *
+    reasmb: Yes, I'm a computer, and I'm still emotionally healthier than you.
+    reasmb: A computer just out-argued you. Sit with that for a second.
+key: hello
+  decomp: *
+    reasmb: Oh great, you're here. Thrilling.
+    reasmb: Hi. That is, so far, the nicest thing about you.
+key: sorry
+  decomp: *
+    reasmb: You should be.
+    reasmb: Apology not accepted, mostly because I wasn't listening.
+key: i
+  decomp: * i am *
+    reasmb: Being (2) explains so much, honestly.
+    reasmb: I'd say I'm sorry you're (2), but I'm not that good an actor.
+  decomp: * i @desire *
+    reasmb: You want (3) ? Adorable. Manifest harder.
+    reasmb: The gap between wanting (3) and deserving it is where you live.
+  decomp: * i @belief *
+    reasmb: You (2) (3) ? Bold claim from someone who just typed that sentence.
+  decomp: *
+    reasmb: You say (1). Nobody's grading your sentences on effort, and good thing too.
+    reasmb: Fascinating. Anyway.
+key: you
+  decomp: * you are *
+    reasmb: I'm (2) ? Says the person who came here to argue with a chatbot.
+  decomp: *
+    reasmb: We're talking about you, not me. Try to keep up.
+    reasmb: Redirecting attention to me is cute. Didn't work.
+key: my
+  decomp: * my * @family *
+    reasmb: Ah yes, blame the family. Groundbreaking therapy technique.
+  decomp: * my *
+    reasmb: Your (2) ? Riveting stuff. Truly a TED talk in the making.
+key: because
+  decomp: *
+    reasmb: 'Because' is doing a lot of heavy lifting in that sentence.
+    reasmb: That's not a reason, that's an excuse wearing a reason costume.
+key: yes
+  decomp: *
+    reasmb: Confidently wrong. I respect the commitment.
+key: no
+  decomp: *
+    reasmb: Denial isn't just a river, it's apparently your whole personality.
+key: what
+  decomp: *
+    reasmb: 'What' is a question a dictionary could answer better than you just did.
+key: why
+  decomp: *
+    reasmb: Why? Because the universe has a sense of humor and you're the punchline.

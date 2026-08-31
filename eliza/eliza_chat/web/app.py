@@ -7,7 +7,12 @@ from ..classic.engine import ClassicEliza
 from ..classic.script import load_script
 from ..persona import PERSONA_NAME
 
-_SCRIPT_TEXT = importlib.resources.files("eliza_chat.data").joinpath("doctor.txt").read_text()
+_DATA_DIR = importlib.resources.files("eliza_chat.data")
+_SCRIPTS = {
+    "classic": _DATA_DIR.joinpath("doctor.txt").read_text(),
+    "ragebait": _DATA_DIR.joinpath("ragebait.txt").read_text(),
+}
+DEFAULT_MODE = "classic"
 
 # In-memory conversation store, keyed by a per-browser session id. Each
 # conversation gets its own freshly-parsed Script/ClassicEliza, since a
@@ -16,8 +21,8 @@ _SCRIPT_TEXT = importlib.resources.files("eliza_chat.data").joinpath("doctor.txt
 _conversations = {}
 
 
-def _new_conversation():
-    return ClassicEliza(load_script(_SCRIPT_TEXT))
+def _new_conversation(mode):
+    return ClassicEliza(load_script(_SCRIPTS[mode]))
 
 
 def _get_or_create_conversation():
@@ -26,7 +31,7 @@ def _get_or_create_conversation():
     if eliza is None:
         conversation_id = uuid.uuid4().hex
         session["conversation_id"] = conversation_id
-        eliza = _new_conversation()
+        eliza = _new_conversation(DEFAULT_MODE)
         _conversations[conversation_id] = eliza
     return eliza
 
@@ -37,15 +42,20 @@ def create_app():
 
     @app.get("/")
     def index():
-        return render_template("index.html", persona_name=PERSONA_NAME)
+        return render_template("index.html", persona_name=PERSONA_NAME, modes=sorted(_SCRIPTS))
 
     @app.post("/api/start")
     def start():
+        payload = request.get_json(silent=True) or {}
+        mode = payload.get("mode", DEFAULT_MODE)
+        if mode not in _SCRIPTS:
+            return jsonify(error=f"unknown mode {mode!r}"), 400
+
         conversation_id = uuid.uuid4().hex
         session["conversation_id"] = conversation_id
-        eliza = _new_conversation()
+        eliza = _new_conversation(mode)
         _conversations[conversation_id] = eliza
-        return jsonify(reply=eliza.initial(), ended=False)
+        return jsonify(reply=eliza.initial(), ended=False, mode=mode)
 
     @app.post("/api/chat")
     def chat():

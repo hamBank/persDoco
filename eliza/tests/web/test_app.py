@@ -28,6 +28,27 @@ def test_start_returns_the_scripts_initial_greeting(client):
     data = response.get_json()
     assert data["reply"] == "How do you do.  Please tell me your problem."
     assert data["ended"] is False
+    assert data["mode"] == "classic"
+
+
+def test_start_with_ragebait_mode_discloses_it_up_front(client):
+    response = client.post("/api/start", json={"mode": "ragebait"})
+    assert response.status_code == 200
+    data = response.get_json()
+    assert data["mode"] == "ragebait"
+    assert "RAGEBAIT MODE: ON" in data["reply"]
+
+
+def test_chat_in_ragebait_mode_uses_the_ragebait_script(client):
+    client.post("/api/start", json={"mode": "ragebait"})
+    response = client.post("/api/chat", json={"message": "My mother never listens to me"})
+    data = response.get_json()
+    assert data["reply"] == "Ah yes, blame the family. Groundbreaking therapy technique."
+
+
+def test_start_rejects_an_unknown_mode(client):
+    response = client.post("/api/start", json={"mode": "nonsense"})
+    assert response.status_code == 400
 
 
 def test_chat_returns_a_reply_after_start(client):

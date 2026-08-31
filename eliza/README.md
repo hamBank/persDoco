@@ -26,6 +26,7 @@ original 1966 program. It ships two engines:
 - `eliza_chat/classic/matching.py` — decomposition-pattern matching (`*` wildcards, `@synonym` tokens)
 - `eliza_chat/classic/engine.py` — `ClassicEliza`: the full classic-script interpreter
 - `eliza_chat/data/doctor.txt` — the classic ELIZA script (see `NOTICE.md` for provenance/license)
+- `eliza_chat/data/ragebait.txt` — an alternate, deliberately provocative/insulting script for comedic effect (see "Ragebait mode" below)
 - `eliza_chat/persona.py` — the display name (`PERSONA_NAME`) shown to end users
 - `eliza_chat/cli.py` — REPL loop (`eliza-chat` entry point)
 - `eliza_chat/web/app.py` — Flask app (`create_app()`); `eliza-chat-web` entry point
@@ -49,8 +50,9 @@ CLI:
 
 ```
 pip install -e .
-eliza-chat          # classic DOCTOR script (default)
-eliza-chat --simple # small built-in script
+eliza-chat            # classic DOCTOR script (default)
+eliza-chat --simple   # small built-in script
+eliza-chat --ragebait # deliberately provocative/insulting persona (see below)
 ```
 
 or, without installing:
@@ -79,7 +81,19 @@ use but means sessions (and their in-memory conversation state) don't
 survive a restart, and won't be shared across multiple worker
 processes — set `app.config["SECRET_KEY"]` explicitly, and move
 conversation storage out of the in-process dict, before running this
-anywhere beyond a single local process.
+anywhere beyond a single local process. The web UI's mode picker lets
+a visitor choose the classic or ragebait persona before starting.
+
+## Ragebait mode
+
+`eliza_chat/data/ragebait.txt` is the same DOCTOR-format interpreter
+driving a different persona: deliberately exaggerated, comedic insults
+instead of therapeutic reflection ("Cool story. Nobody asked, but here
+we are."). It's for laughs, not harassment — every consumer discloses
+that the mode is on up front, since the disclosure is the script's own
+`initial:` line (`🔥 RAGEBAIT MODE: ON 🔥 ...`), not something bolted
+on by the CLI or web layer. Use `eliza-chat --ragebait` on the CLI, or
+pick "ragebait" from the mode picker in the web UI.
 
 ## Extending the classic script
 
