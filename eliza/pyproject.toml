@@ -1,0 +1,18 @@
+[project]
+name = "eliza-chat"
+version = "0.1.0"
+description = "A TDD-built, ELIZA-inspired CLI chatbot framework"
+requires-python = ">=3.9"
+
+[project.scripts]
+eliza-chat = "eliza_chat.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["eliza_chat"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
