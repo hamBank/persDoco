@@ -16,6 +16,20 @@ def client(app):
     return app.test_client()
 
 
+def test_create_app_sets_a_usable_secret_key_by_default():
+    # Regression test: app.config.setdefault("SECRET_KEY", ...) is a no-op
+    # here, since Flask's own default config already defines the key (as
+    # None) before create_app() runs. Without a real default, any session
+    # access raises "RuntimeError: The session is unavailable because no
+    # secret key was set."
+    app = create_app()
+    assert app.config["SECRET_KEY"]
+
+    client = app.test_client()
+    response = client.post("/api/start")
+    assert response.status_code == 200
+
+
 def test_index_page_shows_the_persona_name(client):
     response = client.get("/")
     assert response.status_code == 200
