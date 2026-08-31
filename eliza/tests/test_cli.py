@@ -1,8 +1,13 @@
 import io
 
-from eliza_chat.cli import build_classic_eliza, run_repl
+from eliza_chat.cli import WELCOME_MESSAGE, build_classic_eliza, build_ragebait_eliza, run_repl
 from eliza_chat.engine import Eliza
+from eliza_chat.persona import PERSONA_NAME
 from eliza_chat.rules import Rule
+
+
+def test_welcome_message_uses_the_persona_name():
+    assert PERSONA_NAME in WELCOME_MESSAGE
 
 
 def make_eliza():
@@ -57,3 +62,18 @@ def test_repl_works_with_the_classic_engine():
     output = stdout.getvalue()
     assert "How do you do." in output
     assert "Goodbye." in output
+
+
+def test_build_ragebait_eliza_announces_the_mode_on_start():
+    eliza = build_ragebait_eliza()
+    assert "RAGEBAIT MODE: ON" in eliza.initial()
+
+
+def test_repl_discloses_ragebait_mode_up_front():
+    eliza = build_ragebait_eliza()
+    stdin = io.StringIO("bye\n")
+    stdout = io.StringIO()
+
+    run_repl(eliza, input_stream=stdin, output_stream=stdout)
+
+    assert "RAGEBAIT MODE: ON" in stdout.getvalue()

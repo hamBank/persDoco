@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ persona_name }}</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 640px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 { font-size: 1.25rem; }
+    #mode-picker {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border: 1px solid #8888;
+      border-radius: 8px;
+    }
+    #mode-picker label { display: flex; align-items: center; gap: 0.35rem; }
+    #banner {
+      display: none;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-weight: 700;
+      background: #b3261e;
+      color: #fff;
+    }
+    #banner.visible { display: block; }
+    #log {
+      border: 1px solid #8888;
+      border-radius: 8px;
+      padding: 1rem;
+      height: 55vh;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+    .msg { margin: 0 0 0.75rem; line-height: 1.4; }
+    .msg .who { font-weight: 600; }
+    .msg.bot .who { color: #4a6fa5; }
+    .msg.user .who { color: #666; }
+    body.ragebait .msg.bot .who { color: #b3261e; }
+    form { display: flex; gap: 0.5rem; }
+    input[type=text] { flex: 1; padding: 0.5rem; }
+    button { padding: 0.5rem 1rem; }
+  </style>
+</head>
+<body>
+  <h1>{{ persona_name }}</h1>
+
+  <div id="mode-picker">
+    <strong>Mode:</strong>
+    {% for mode in modes %}
+      <label>
+        <input type="radio" name="mode" value="{{ mode }}" {% if loop.first %}checked{% endif %}>
+        {{ mode }}
+      </label>
+    {% endfor %}
+    <button type="button" id="start-button">Start</button>
+  </div>
+
+  <div id="banner">🔥 RAGEBAIT MODE: ON — this persona is deliberately insulting, for comedic effect. 🔥</div>
+
+  <div id="log" aria-live="polite"></div>
+  <form id="chat-form">
+    <input type="text" id="message" autocomplete="off" placeholder="Type here..." disabled>
+    <button type="submit" disabled>Send</button>
+  </form>
+
+  <script>
+    const log = document.getElementById('log');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('message');
+    const sendButton = form.querySelector('button[type=submit]');
+    const startButton = document.getElementById('start-button');
+    const banner = document.getElementById('banner');
+    const personaName = {{ persona_name | tojson }};
+    let ended = false;
+
+    function addMessage(who, text) {
+      const div = document.createElement('div');
+      div.className = 'msg ' + (who === personaName ? 'bot' : 'user');
+      const label = document.createElement('span');
+      label.className = 'who';
+      label.textContent = who + ': ';
+      div.appendChild(label);
+      div.appendChild(document.createTextNode(text));
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    async function start() {
+      const mode = document.querySelector('input[name=mode]:checked').value;
+      banner.classList.toggle('visible', mode === 'ragebait');
+      document.body.classList.toggle('ragebait', mode === 'ragebait');
+
+      log.innerHTML = '';
+      ended = false;
+      input.disabled = false;
+      sendButton.disabled = false;
+      input.focus();
+
+      const response = await fetch('/api/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode }),
+      });
+      const data = await response.json();
+      addMessage(personaName, data.reply);
+    }
+
+    startButton.addEventListener('click', start);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const message = input.value.trim();
+      if (!message || ended) return;
+      addMessage('you', message);
+      input.value = '';
+
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+      const data = await response.json();
+      addMessage(personaName, data.reply);
+      if (data.ended) {
+        ended = true;
+        input.disabled = true;
+        sendButton.disabled = true;
+      }
+    });
+  </script>
+</body>
+</html>

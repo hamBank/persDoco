@@ -5,17 +5,32 @@ import sys
 from .classic.engine import ClassicEliza
 from .classic.script import load_script
 from .engine import Eliza
+from .persona import PERSONA_NAME
 from .script import DEFAULT_RESPONSES, DEFAULT_RULES
 
-WELCOME_MESSAGE = "Hello, I'm Eliza. How are you feeling today?"
+WELCOME_MESSAGE = f"Hello, I'm {PERSONA_NAME}. How are you feeling today?"
 FAREWELL_MESSAGE = "Goodbye. Take care."
 PROMPT = "you> "
 
 
+def _load_bundled_script(filename):
+    text = importlib.resources.files("eliza_chat.data").joinpath(filename).read_text()
+    return load_script(text)
+
+
 def build_classic_eliza():
     """Build an Eliza driven by the bundled, classic DOCTOR-format script."""
-    text = importlib.resources.files("eliza_chat.data").joinpath("doctor.txt").read_text()
-    return ClassicEliza(load_script(text))
+    return ClassicEliza(_load_bundled_script("doctor.txt"))
+
+
+def build_ragebait_eliza():
+    """Build an Eliza driven by the bundled ragebait script (data/ragebait.txt).
+
+    Same interpreter, deliberately provocative/insulting persona for
+    comedic effect. Its script announces the mode is on as the very
+    first message, so every consumer gets that disclosure for free.
+    """
+    return ClassicEliza(_load_bundled_script("ragebait.txt"))
 
 
 def build_simple_eliza():
@@ -46,14 +61,25 @@ def run_repl(eliza, input_stream=sys.stdin, output_stream=sys.stdout):
 
 def main():
     parser = argparse.ArgumentParser(description="An ELIZA-style CLI chatbot.")
-    parser.add_argument(
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
         "--simple",
         action="store_true",
         help="use the small built-in script instead of the classic DOCTOR script",
     )
+    mode.add_argument(
+        "--ragebait",
+        action="store_true",
+        help="deliberately provocative/insulting comedic persona (clearly announced on start)",
+    )
     args = parser.parse_args()
 
-    eliza = build_simple_eliza() if args.simple else build_classic_eliza()
+    if args.ragebait:
+        eliza = build_ragebait_eliza()
+    elif args.simple:
+        eliza = build_simple_eliza()
+    else:
+        eliza = build_classic_eliza()
     run_repl(eliza)
 
 

@@ -2,7 +2,10 @@ Eliza Chat
 ==========
 
 A small, test-driven-development (TDD) framework for building an
-ELIZA-style CLI chatbot in Python. It ships two engines:
+ELIZA-style chatbot in Python, presented to end users as
+**Vánagandr Jörmungandr** (`eliza_chat.persona.PERSONA_NAME`) — the
+underlying engine and module names stay "Eliza"/"ELIZA" in homage to the
+original 1966 program. It ships two engines:
 
 - **`eliza_chat.classic`** — a full interpreter for the classic ELIZA
   "DOCTOR" script format (weighted keywords, multi-decomp keys, synonym
@@ -23,25 +26,33 @@ ELIZA-style CLI chatbot in Python. It ships two engines:
 - `eliza_chat/classic/matching.py` — decomposition-pattern matching (`*` wildcards, `@synonym` tokens)
 - `eliza_chat/classic/engine.py` — `ClassicEliza`: the full classic-script interpreter
 - `eliza_chat/data/doctor.txt` — the classic ELIZA script (see `NOTICE.md` for provenance/license)
+- `eliza_chat/data/ragebait.txt` — an alternate, deliberately provocative/insulting script for comedic effect (see "Ragebait mode" below)
+- `eliza_chat/persona.py` — the display name (`PERSONA_NAME`) shown to end users
 - `eliza_chat/cli.py` — REPL loop (`eliza-chat` entry point)
+- `eliza_chat/web/app.py` — Flask app (`create_app()`); `eliza-chat-web` entry point
+- `eliza_chat/web/templates/index.html` — the browser chat UI
 - `tests/` — the test suite (written first; drives the implementation above),
   including `tests/classic/test_doctor_script.py`, which exercises the
   bundled script directly to cover its keyword, synonym, `goto`, and
-  memory patterns
+  memory patterns, and `tests/web/test_app.py`, which drives the Flask
+  app with its test client
 
 ## Running the tests
 
 ```
-pip install pytest
+pip install pytest flask
 pytest
 ```
 
 ## Running the chatbot
 
+CLI:
+
 ```
 pip install -e .
-eliza-chat          # classic DOCTOR script (default)
-eliza-chat --simple # small built-in script
+eliza-chat            # classic DOCTOR script (default)
+eliza-chat --simple   # small built-in script
+eliza-chat --ragebait # deliberately provocative/insulting persona (see below)
 ```
 
 or, without installing:
@@ -49,6 +60,40 @@ or, without installing:
 ```
 PYTHONPATH=. python3 -m eliza_chat.cli
 ```
+
+Web app (a minimal browser chat UI backed by the same classic engine,
+with an independent, in-memory conversation per browser session):
+
+```
+pip install -e .
+eliza-chat-web
+```
+
+or, without installing:
+
+```
+PYTHONPATH=. python3 -m eliza_chat.web.app
+```
+
+then open http://127.0.0.1:5000/. `create_app()` generates a random
+session secret at startup if none is set, which is fine for local/dev
+use but means sessions (and their in-memory conversation state) don't
+survive a restart, and won't be shared across multiple worker
+processes — set `app.config["SECRET_KEY"]` explicitly, and move
+conversation storage out of the in-process dict, before running this
+anywhere beyond a single local process. The web UI's mode picker lets
+a visitor choose the classic or ragebait persona before starting.
+
+## Ragebait mode
+
+`eliza_chat/data/ragebait.txt` is the same DOCTOR-format interpreter
+driving a different persona: deliberately exaggerated, comedic insults
+instead of therapeutic reflection ("Cool story. Nobody asked, but here
+we are."). It's for laughs, not harassment — every consumer discloses
+that the mode is on up front, since the disclosure is the script's own
+`initial:` line (`🔥 RAGEBAIT MODE: ON 🔥 ...`), not something bolted
+on by the CLI or web layer. Use `eliza-chat --ragebait` on the CLI, or
+pick "ragebait" from the mode picker in the web UI.
 
 ## Extending the classic script
 
