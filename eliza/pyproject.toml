@@ -12,7 +12,10 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["eliza_chat"]
+packages = ["eliza_chat", "eliza_chat.classic", "eliza_chat.data"]
+
+[tool.setuptools.package-data]
+"eliza_chat.data" = ["*.txt", "*.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

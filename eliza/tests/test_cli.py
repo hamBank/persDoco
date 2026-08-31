@@ -1,6 +1,6 @@
 import io
 
-from eliza_chat.cli import run_repl
+from eliza_chat.cli import build_classic_eliza, run_repl
 from eliza_chat.engine import Eliza
 from eliza_chat.rules import Rule
 
@@ -39,3 +39,21 @@ def test_repl_prints_farewell_message():
     run_repl(eliza, input_stream=stdin, output_stream=stdout)
 
     assert "bye" in stdout.getvalue().lower() or "goodbye" in stdout.getvalue().lower()
+
+
+def test_build_classic_eliza_loads_the_bundled_doctor_script():
+    eliza = build_classic_eliza()
+    assert eliza.initial() == "How do you do.  Please tell me your problem."
+    assert eliza.respond("bye") is None
+
+
+def test_repl_works_with_the_classic_engine():
+    eliza = build_classic_eliza()
+    stdin = io.StringIO("Hello there\nbye\n")
+    stdout = io.StringIO()
+
+    run_repl(eliza, input_stream=stdin, output_stream=stdout)
+
+    output = stdout.getvalue()
+    assert "How do you do." in output
+    assert "Goodbye." in output
