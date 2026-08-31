@@ -31,3 +31,8 @@
 *.xdy
 *.tdo
 *.swp
+
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
