@@ -38,7 +38,11 @@ def _get_or_create_conversation():
 
 def create_app():
     app = Flask(__name__)
-    app.config.setdefault("SECRET_KEY", uuid.uuid4().hex)
+    # Flask's own default config already defines "SECRET_KEY" (as None),
+    # so config.setdefault(...) would be a no-op here — check truthiness
+    # instead of key presence.
+    if not app.config.get("SECRET_KEY"):
+        app.config["SECRET_KEY"] = uuid.uuid4().hex
 
     @app.get("/")
     def index():
