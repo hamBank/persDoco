@@ -3,19 +3,22 @@ name = "eliza-chat"
 version = "0.1.0"
 description = "A TDD-built, ELIZA-inspired CLI chatbot framework"
 requires-python = ">=3.9"
+dependencies = ["flask>=3.0"]
 
 [project.scripts]
 eliza-chat = "eliza_chat.cli:main"
+eliza-chat-web = "eliza_chat.web.app:main"
 
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["eliza_chat", "eliza_chat.classic", "eliza_chat.data"]
+packages = ["eliza_chat", "eliza_chat.classic", "eliza_chat.data", "eliza_chat.web"]
 
 [tool.setuptools.package-data]
 "eliza_chat.data" = ["*.txt", "*.md"]
+"eliza_chat.web" = ["templates/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

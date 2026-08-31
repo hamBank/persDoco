@@ -5,9 +5,10 @@ import sys
 from .classic.engine import ClassicEliza
 from .classic.script import load_script
 from .engine import Eliza
+from .persona import PERSONA_NAME
 from .script import DEFAULT_RESPONSES, DEFAULT_RULES
 
-WELCOME_MESSAGE = "Hello, I'm Eliza. How are you feeling today?"
+WELCOME_MESSAGE = f"Hello, I'm {PERSONA_NAME}. How are you feeling today?"
 FAREWELL_MESSAGE = "Goodbye. Take care."
 PROMPT = "you> "
 

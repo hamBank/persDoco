@@ -1,8 +1,13 @@
 import io
 
-from eliza_chat.cli import build_classic_eliza, run_repl
+from eliza_chat.cli import WELCOME_MESSAGE, build_classic_eliza, run_repl
 from eliza_chat.engine import Eliza
+from eliza_chat.persona import PERSONA_NAME
 from eliza_chat.rules import Rule
+
+
+def test_welcome_message_uses_the_persona_name():
+    assert PERSONA_NAME in WELCOME_MESSAGE
 
 
 def make_eliza():
